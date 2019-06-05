@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
   appText: {
     color: 'black',
     fontSize: 10,
-    fontFamily: 'Graphik',
+    // fontFamily: 'Graphik',
   },
   container: {
     flex: 1,
@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
   headingText: {
     color: 'black',
     fontSize: 20,
-    fontFamily: 'Graphik',
+    // fontFamily: 'Graphik',
     fontWeight: '500'
   },
   welcome: {
