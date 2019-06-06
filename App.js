@@ -14,7 +14,7 @@ import {
   View
 } from 'react-native';
 import { createAppContainer, createBottomTabNavigator, createStackNavigator } from 'react-navigation';
-import Apps from './src/Apps'
+import Apps, { Fork } from './src/Apps'
 
 /**
  * @format
@@ -26,12 +26,61 @@ import { navigate } from "./src/utils/navigationWrapper";
 import NavigatorService from './src/utils/navigationWrapper';
 import Icon from "./src/Components/IconComponent";
 
+
+import { createMaterialTopTabNavigator } from 'react-navigation'
+
+class HomeScreen extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>Tab Navigator Tutorial 2!</Text>
+      </View>
+    );
+  }
+}
+class SettingsScreen extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>Settings</Text>
+      </View>
+    );
+  }
+}
+
 GLOBAL.XMLHttpRequest = GLOBAL.originalXMLHttpRequest || GLOBAL.XMLHttpRequest;
 
-export const TabNavigator = createBottomTabNavigator({
-  Apps: { screen: Apps },
-  // Home: {screen: ScanPublicKey },
+const AppTabNavigator = createMaterialTopTabNavigator({
+  Home: {
+    screen: HomeScreen,
+    navigationOptions: {
+      tabBarLabel: 'Home',
+      tabBarIcon: ({ tintColor }) => (
+        <Icon icon="ChatGrey" color={tintColor} size={40} />
+      )
+    }
+  },
+  Apps: {
+    screen: Apps,
+    navigationOptions: {
+      tabBarLabel: 'Home',
+      tabBarIcon: ({ tintColor }) => (
+        <Icon icon="HomeGrey" color={tintColor} size={40} />
+      )
+    }
+  },
+  Settings: {
+    screen: SettingsScreen,
+    navigationOptions: {
+      tabBarLabel: 'Settings',
+      tabBarIcon: ({ tintColor }) => (
+        <Icon icon="AvatarGrey" color={tintColor} size={40} />
+      )
+    }
+  }
 }, {
+  initialRouteName: 'Apps',
+  order: ['Home', 'Apps', 'Settings'],
   tabBarPosition: 'bottom',
   animationEnabled: true,
   tabBarOptions: {
@@ -40,21 +89,33 @@ export const TabNavigator = createBottomTabNavigator({
     indicatorStyle: {
       backgroundColor: 'transparent'
     },
+    labelStyle: {},
+    allowFontScaling: true,
+    activeTintColor: '#31FF00',
+    inactiveTintColor: '#fff',
     style: {
       backgroundColor: 'transparent',
       borderTopWidth: 0,
       position: 'absolute',
       left: 0,
       right: 0,
-      bottom: 0
+      bottom: 0,
     },
-    labelStyle: {},
-    allowFontScaling: true,
-    activeTintColor: '#31FF00',
-    inactiveTintColor: '#fff'
-  }});
+    // indicatorStyle: {
+    //   height: 0
+    // },
+    showIcon: true
+  },
+})
 
-export const AliceMain = createAppContainer(TabNavigator);
+const MainApp = createStackNavigator({
+  Apps: { screen: AppTabNavigator },
+  Fork: { screen: Fork }
+}, {
+  headerMode: 'none',
+});
+
+export const AliceMain = createAppContainer(MainApp);
 
 class LeApps extends Component<Props> {
   static navigationOptions = ({ navigation }) => {

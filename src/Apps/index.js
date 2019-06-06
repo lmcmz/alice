@@ -2,8 +2,27 @@ import React, { Component } from 'react';
 import {
   StyleSheet, Text, TouchableOpacity, Keyboard, TouchableWithoutFeedback, Image, View, TextInput, Dimensions, RNFetchBlob, NativeModules
 } from 'react-native';
-
 import Icon from '../Components/IconComponent';
+export { default as Fork } from './Fork';
+// export { default as Bounties } from './Bounties';
+// export { default as Cryptokitties } from './Cryptokitties';
+// export { default as RadarRelay } from './RadarRelay';
+// export { default as LocalEthereum } from './LocalEthereum';
+// export { default as Wyre } from './Wyre';
+// export { default as Peepeth } from './Peepeth';
+// export { default as Foam } from './Foam';
+// export { default as Dharma } from './Dharma';
+// export { default as Compound } from './Compound';
+// export { default as MetaMultisig } from './MetaMultisig';
+// export { default as Uniswap } from './Uniswap';
+// export { default as Gitcoin } from './Gitcoin';
+// export { default as Synthetix } from './Synthetix';
+// export { default as Aragon } from './Aragon';
+// export { default as Decentraland } from './Decentraland';
+// export { default as Qantas } from './Qantas';
+// export { default as Augur } from './Augur';
+// export { default as Veil } from './Veil';
+
 
 const { height, width } = Dimensions.get('window');
 
@@ -18,6 +37,10 @@ export default class AppsScreen extends Component<Props> {
 
   componentDidMount() {
 
+  }
+
+  send = () => {
+    NativeModules.NativeModuleCallSwift.helloSwift("0xA1b02d8c67b0FDCF4E379855868DeB470E169cfB", "0xE115012aA32a46F53b09e0A71CD0afa0658Da55F", "10000000000");
   }
 
   navigate = () => console.log('hello');
