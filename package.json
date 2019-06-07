@@ -6,6 +6,7 @@
         "start": "yarn react-native start"
     },
     "dependencies": {
+        "@mapbox/react-native-mapbox-gl": "https://github.com/nitaliano/react-native-mapbox-gl#master",
         "react": "^16.8.6",
         "react-native": "^0.59.8",
         "react-native-camera": "^2.10.0",
